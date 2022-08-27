@@ -1,3 +1,3 @@
 # P14 : Pass a jQuery library to React
 
-## Jean-Sébastien ReactJs dev app trainee
+## Jean-Sébastien Rakotonirina, ReactJs dev app trainee
