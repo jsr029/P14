@@ -12,5 +12,8 @@
     "react"
   ],
   "author": "jsr029",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-hook-form": "^7.34.2"
+  }
 }
