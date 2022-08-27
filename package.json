@@ -1,0 +1,16 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "OpenClassRooms P14 Faites passer une librairie jQuery vers React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclassrooms",
+    "jquery",
+    "react"
+  ],
+  "author": "jsr029",
+  "license": "MIT"
+}
