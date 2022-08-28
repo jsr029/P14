@@ -15,7 +15,7 @@ function App() {
         {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          <Route path="/ViewCurrentEmployees" element={<ViewCurrentEmployees />} />
+          <Route path="/viewcurrentemployees" element={<ViewCurrentEmployees />} />
           <Route path="/" element={<Home />} />
         </Routes>
     </Router>
