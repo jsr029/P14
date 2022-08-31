@@ -7,11 +7,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import fr from "date-fns/locale/fr"; // the locale you want
 import Select from "react-select";
 import states from '../data/state'
+import { useSelector, useDispatch } from 'react-redux'
+import { employees } from '../actions/index'
 
 registerLocale("fr", fr); // register it with the name you want
 
 function Home() {
   const { control, formState: { errors }, register, handleSubmit } = useForm();
+  const dispatch = useDispatch()
   const options = [
     { value: 'Sales', label: 'Sales' },
     { value: 'Marketing', label: 'Marketing' },
@@ -23,8 +26,11 @@ function Home() {
   states.map((n, index) => {
     return statesArray.push({ value: n.name, label: n.name })
   })
+
   const onSubmit = data => {
-    localStorage.setItem('employees', JSON.stringify(data))
+    //localStorage.setItem('employees', JSON.stringify(data))
+    //localStorage.removeItem('employees')
+    dispatch(employees(data))
   }
 
   return (
@@ -36,33 +42,33 @@ function Home() {
         <Link to='/viewcurrentemployees'>View Current Employees</Link>
         <h2>Create Employee</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="first-name">First Name</label>
+          <label htmlFor="firstname">First Name</label>
           <input
             type="text"
-            id="first-name"
-            {...register('first-name', { required: "First Name is required" })}
+            id="firstname"
+            {...register('firstname', { required: "First Name is required" })}
           />
-          <ErrorMessage errors={errors} name="first-name" />
+          <ErrorMessage errors={errors} name="firstname" />
           <ErrorMessage
             errors={errors}
-            name="first-name"
+            name="firstname"
             render={({ message }) => <p>{message}</p>}
           />
 
-          <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" {...register('lest-name', { required: "Last Name is required" })} />
-          <ErrorMessage errors={errors} name="last-name" />
+          <label htmlFor="lastname">Last Name</label>
+          <input type="text" id="lastname" {...register('lastname', { required: "Last Name is required" })} />
+          <ErrorMessage errors={errors} name="lastname" />
           <ErrorMessage
             errors={errors}
-            name="last-name"
+            name="lastname"
             render={({ message }) => <p>{message}</p>}
           />
 
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
+          <label htmlFor="dateofbirth">Date of Birth</label>
           <Controller
             control={control}
-            name='date-of-birth'
+            name='dateofbirth'
             render={({ field }) => (
               <DatePicker
                 placeHolderText="Date of Birth"
@@ -74,11 +80,11 @@ function Home() {
             )}
           />
 
-          <label htmlFor="start-date">Start Date</label>
+          <label htmlFor="startdate">Start Date</label>
           <Controller
             control={control}
             rules={{ required: true }}
-            name='start-date'
+            name='startdate'
             render={({ field }) => (
               <DatePicker
                 placeHolderText="Start Date"
@@ -98,7 +104,7 @@ function Home() {
             <label htmlFor="city">City</label>
             <input id="city" type="text" {...register('city', { required: true })} />
 
-            <label htmlFor="state">State</label>
+            <label htmlFor="State">State</label>
             <Controller
               control={control}
               rules={{ required: true }}
@@ -112,11 +118,11 @@ function Home() {
                 />
               )}
             />
-            <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" {...register('zip-code', { required: true })} />
+            <label htmlFor="zipcode">Zip Code</label>
+            <input id="zipcode" type="number" {...register('zipcode', { required: true })} />
           </fieldset>
 
-          <label htmlFor="department">Department</label>
+          <label htmlFor="Departement">Departement</label>
 
           <Controller
             control={control}
