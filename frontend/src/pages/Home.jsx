@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
@@ -9,11 +9,14 @@ import Select from "react-select";
 import states from '../data/state'
 import { useSelector, useDispatch } from 'react-redux'
 import { employees } from '../actions/index'
+import history from '../history'
+import Modal from "react-modal"
+import ModalEmployeeSaved from '../components/ModalEmployeeSaved';
 
 registerLocale("fr", fr); // register it with the name you want
 
 function Home() {
-  const { control, formState: { errors }, register, handleSubmit } = useForm();
+  const { control, formState: { errors }, register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch()
   const options = [
     { value: 'Sales', label: 'Sales' },
@@ -31,6 +34,21 @@ function Home() {
     //localStorage.setItem('employees', JSON.stringify(data))
     //localStorage.removeItem('employees')
     dispatch(employees(data))
+    //history.push(`/viewcurrentemployees`)
+  }
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const setModalIsOpenToTrue = () => {
+    setModalIsOpen(true)
+  }
+
+  const setModalIsOpenToFalse = () => {
+    setModalIsOpen(false)
+    reset()
+  }
+
+  const handleClick = () => {
+    //history.push(`/viewcurrentemployees`)
   }
 
   return (
@@ -138,11 +156,25 @@ function Home() {
             )}
           />
           <div className='button'>
-            <button type='submit'>Save</button>
+            <button type='submit' onClick={setModalIsOpenToTrue}>Save</button>
           </div>
+          <Modal
+            isOpen={modalIsOpen}
+            id="confirmation"
+            className="modal"
+            ariaHideApp={false}
+            style={{
+              overlay: {
+                position: 'fixed',
+                backgroundColor: 'rgba(0, 0, 0, 0.75)'
+              }
+            }}
+          >
+            <button className='modalButton' onClick={setModalIsOpenToFalse} >X</button>
+            <ModalEmployeeSaved />
+          </Modal>
         </form>
       </div>
-      <div id="confirmation" className="modal">Employee Created!</div>
     </>
   )
 }
