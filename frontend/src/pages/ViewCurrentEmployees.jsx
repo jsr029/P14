@@ -7,7 +7,7 @@ function ViewCurrentEmployees() {
   return (
     <>  
       <div className='employees'>
-        <h1>Current Employees</h1>
+        <h1 style={{visibility: "hidden"}}>Current Employees</h1>
         <TableEmployees />
       </div>            
       <Link to="/">Home</Link>
