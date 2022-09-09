@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Table from '../Table';
 
@@ -8,7 +8,6 @@ function TableEmployees() {
       - Here in this example, we have grouped our columns into two headers. react-table is flexible enough to create grouped table headers
     */
     const employeesStore = useSelector((state) => state.employeesReducer).data
-    console.log(employeesStore)
 
     const columns = useMemo(
         () => [

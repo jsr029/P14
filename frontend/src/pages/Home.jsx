@@ -7,9 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import fr from "date-fns/locale/fr"; // the locale you want
 import Select from "react-select";
 import states from '../data/state'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { employees } from '../actions/index'
-import history from '../history'
 import Modal from "react-modal"
 import ModalEmployeeSaved from '../components/ModalEmployeeSaved';
 
@@ -46,10 +45,6 @@ function Home() {
   const setModalIsOpenToFalse = () => {
     setModalIsOpen(false)
     reset()
-  }
-
-  const handleClick = () => {
-    //history.push(`/viewcurrentemployees`)
   }
 
   return (
