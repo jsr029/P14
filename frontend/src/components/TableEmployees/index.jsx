@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Table from '../Table';
+import Moment from 'moment-jalaali'
 
 function TableEmployees() {
     /* 
@@ -26,7 +27,11 @@ function TableEmployees() {
                     },
                     {
                         Header: "Start Date",
-                        accessor: "startdate"
+                        accessor: d => {
+                            return Moment(d.startDate)
+                              .local()
+                              .format("DD/MM/YYYY")
+                          }
                     },
                     {
                         Header: "Department",
@@ -34,7 +39,11 @@ function TableEmployees() {
                     },
                     {
                         Header: "Date of Birth",
-                        accessor: "dateofbirth"
+                        accessor:  d => {
+                            return Moment(d.dateofbirth)
+                              .local()
+                              .format("DD/MM/YYYY")
+                          }
                     },
                     {
                         Header: "Street",
