@@ -31,9 +31,10 @@ function Home() {
   })
 
   const onSubmit = data => {
-    //localStorage.setItem('employees', JSON.stringify(data))
+    localStorage.setItem('employees', JSON.stringify(data))
+    const employeesStorage= JSON.parse(localStorage.getItem('employees'))
     //localStorage.removeItem('employees')
-    dispatch(employees(data))
+    dispatch(employees(employeesStorage))
     //history.push(`/viewcurrentemployees`)
   }
 
