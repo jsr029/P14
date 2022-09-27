@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Table from '../Table';
 import Moment from 'moment-jalaali'
 
+
 function TableEmployees() {
     /* 
       - Columns is a simple array right now, but it will contain some logic later on. It is recommended by react-table to memoize the columns data
@@ -70,7 +71,7 @@ function TableEmployees() {
 
     return (
         <div className="App">
-            <Table columns={columns} data={employeesStore} />
+            <Table columns={columns} data={employeesStore ? employeesStore : ''} />
         </div>
     );
 }

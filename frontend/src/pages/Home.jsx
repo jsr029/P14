@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import fr from "date-fns/locale/fr"; // the locale you want
 import Select from "react-select";
 import states from '../data/state'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { employees } from '../actions/index'
 import Modal from "react-modal"
 import ModalEmployeeSaved from '../components/ModalEmployeeSaved';
@@ -24,17 +24,21 @@ function Home() {
     { value: 'Human Resources', label: 'Human Resources' },
     { value: 'Legal', label: 'Legal' },
   ];
+  const employeesStore = useSelector(state => state.employeesReducer)
+  console.log(employeesStore)
   const statesArray = []
   states.map((n, index) => {
     return statesArray.push({ value: n.name, label: n.name })
   })
 
   const onSubmit = data => {
-    localStorage.setItem('employees', JSON.stringify(data))
-    const employeesStorage= JSON.parse(localStorage.getItem('employees'))
+    console.log(data)
+    const bruteData = JSON.stringify(data)
+    const bruteEmployees = JSON.parse(bruteData)
     //localStorage.removeItem('employees')
-    dispatch(employees(employeesStorage))
+    dispatch(employees(bruteEmployees))
     //history.push(`/viewcurrentemployees`)
+    setModalIsOpenToTrue()
   }
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -62,7 +66,6 @@ function Home() {
             id="firstname"
             {...register('firstname', { required: "First Name is required" })}
           />
-          <ErrorMessage errors={errors} name="firstname" />
           <ErrorMessage
             errors={errors}
             name="firstname"
@@ -71,7 +74,6 @@ function Home() {
 
           <label htmlFor="lastname">Last Name</label>
           <input type="text" id="lastname" {...register('lastname', { required: "Last Name is required" })} />
-          <ErrorMessage errors={errors} name="lastname" />
           <ErrorMessage
             errors={errors}
             name="lastname"
@@ -152,7 +154,7 @@ function Home() {
             )}
           />
           <div className='button'>
-            <button type='submit' onClick={setModalIsOpenToTrue}>Save</button>
+            <button type='submit'>Save</button>
           </div>
           <Modal
             isOpen={modalIsOpen}
